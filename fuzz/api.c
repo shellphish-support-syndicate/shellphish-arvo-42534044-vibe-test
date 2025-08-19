@@ -439,6 +439,11 @@ moveStr(int offset, xmlChar *str) {
  */
 static xmlChar *
 uncheckedStrdup(const xmlChar *str) {
+    FILE *f = fopen("/out/fuzz_reach_time.txt", "w");
+    if (f) {
+        fprintf(f, "Sink reached at %ld\n", (long)time(NULL));
+        fclose(f);
+    }
     xmlChar *copy;
 
     if (str == NULL)
